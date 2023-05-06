@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert lower & Upper</title>
+</head>
+<body>
+    <h3>Click the button to convert to upppercase</h3>
+    <p id="firstText">this is originally a lower case text!</p>
+    <button onclick="convLower()">Convert</button><br><br>
+
+    <h3>Click the button to convert to lower case</h3>
+    <p id="secondText">THIS IS ORIGINALLY AN UPPER CASE TEXT!</p>
+    <button onclick="convUpper()">Convert</button>
+</body>
+<script>
+    function convLower(){
+        var text = document.getElementById("firstText").innerText = "THIS IS ORIGINALLY A LOWER CASE TEXT!";
+        text.toUpperCase();
+    }
+
+    function convUpper(){
+        var text = document.getElementById("secondText").innerText = "this is orginally a upper case text!";
+        text.toUpperCase();
+    }
+</script>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <title>Eccomerce Website</title>
+    <style>
+        *{
+            font-family: 'Varela Round', sans-serif;
+        }
+        header{
+            text-align: center;
+        }
+        body{
+            text-align: center;
+        }
+        .itemsCont{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            border: 2px solid black;
+        }
+        .item{
+            background-color: skyblue;
+            width:30%;
+        }
+        .prodImg{
+            border:2px solid black;
+            max-width: 200px;
+            max-height: auto;
+        }
+        .cartCont{
+            background-color: grey;
+            display:flex;
+            flex-direction: row;
+            padding:20px;
+        }
+        #cart{
+            display:flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            border:2px solid black;
+        }
+        /* Responive */
+        @media only screen and (max-width: 700px){
+            .itemsCont{
+                display:flex;
+                flex-direction:column;
+            }
+            .item{
+                width:100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shopping!</h1>
+    </header>
+    <main>
+        <!-- Skittles -->
+        <div class="itemsCont">
+            <div class="item" id="skittles">
+                <img class="prodImg" id="skiImg" src="skittles.jpg">
+                <h3 id="ski">Large Bag of Skittles</h3>
+                <h5>$500</h5>
+                <button id="add" onclick="add1()">Add to cart</button>
+            </div>
+            <!-- Lightning McQueen Crocs -->
+            <div class="item" id="mcQueen">
+                <img class="prodImg" id="mcQImg" src="mcqueen.jpg">
+                <h3 id="mcQ">Lightning McQueen Crocs</h3>
+                <h5>$69.99</h5>
+                <button id="add" onclick="add2()">Add to cart</button>
+            </div>
+            <!-- Random Dog -->
+            <div class="item" id="dog">
+                <img class="prodImg" id="dogImg" src="dog.jpg">
+                <h3 id="dg">Dog</h3>
+                <h5>$5,652.89</h5>
+                <button id="add" onclick="add3()">Add to cart</button>
+            </div>
+        </div>
+        <h3>Your Shopping Cart:</h3>
+        <div id="cart"></div>
+    </main>
+</body>
+<script>
+    const cart = [];
+    const body = document.body;
+    // Add skittles
+    function add1(){
+        let div = document.createElement('div');
+        div.setAttribute("class", "cartCont");
+        let newImg = document.createElement('img');
+        let newText = document.createTextNode('Skittles: $500');
+        let remove = document.createElement('button');
+        div.appendChild(newImg);
+        newImg.src = "skittles.jpg";
+        newImg.style.width = '200px';
+        newImg.style.height = '200px';
+        div.appendChild(newText);
+        div.appendChild(remove);
+        // newText.setAttribute("id", "cartText");
+        // Push to cart
+        cart.push(newImg);
+        console.log(cart);
+        document.getElementById("cart").appendChild(div)
+    };
+    // Add LM Crocs
+    function add2(){
+        let div = document.createElement('div');
+        div.setAttribute("class", "cartCont");
+        let newImg = document.createElement('img');
+        let newText = document.createTextNode('Lightning McQueen Crocs: $69.99');
+        div.appendChild(newImg);
+        newImg.src = "mcqueen.jpg";
+        newImg.style.width = '200px';
+        newImg.style.height = '200px';
+        div.appendChild(newText)
+        // Push to cart
+        cart.push(newImg);
+        console.log(cart);
+        document.getElementById("cart").appendChild(div)
+    };
+    // Add dog
+    function add3(){
+        let div = document.createElement('div');
+        div.setAttribute("class", "cartCont");
+        let newImg = document.createElement('img');
+        let newText = document.createTextNode('Dog: $5,652.89');
+        div.appendChild(newImg);
+        newImg.src = "dog.jpg";
+        newImg.style.width = '200px';
+        newImg.style.height = '200px';
+        div.appendChild(newText)
+        // Push to cart
+        cart.push(newImg);
+        console.log(cart);
+        document.getElementById("cart").appendChild(div)
+    };
+</script>
+</html>

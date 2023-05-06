@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <title>Filter student list</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+            font-family: 'Varela Round', sans-serif;
+        }
+        body{
+            background-color: skyblue;
+            display:grid;
+            justify-content: center;
+        }
+        #stuList{
+            padding:20px;
+            background-color: white;
+            width:250px;
+            height:auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Filter Student List</h1>
+    <!-- Gender filter -->
+    <label for="genFil">Gender:</label>
+    <select id="genFil">
+      <option value="all">All</option>
+      <option value="female">Female</option>
+      <option value="male">Male</option>
+    </select><br>
+    <!-- Grade Level Filter -->
+    <label for="graFil">Grade Level:</label>
+    <select id="graFil">
+      <option value="all">All</option>
+      <option value="9">Freshman (9)</option>
+      <option value="10">Sophmore (10)</option>
+      <option value="11">Junior (11)</option>
+      <option value="12">Senior (12)</option>
+    </select>
+    <!-- Button filter -->
+    <button id="filBut">Filter</button>
+    <!-- Student list will go here -->
+    <ul id="stuList"></ul>
+</body>
+<script>
+  // List of students
+  const students = [
+    {name: "Andrew", gender: "male", grade: 11},
+    {name: "Eddie", gender: "male", grade: 11 },
+    {name: "Micheal", gender: "male", grade: 12 },
+    {name: "Jack", gender: "male", grade: 11 },
+    {name: "Clayton", gender: "male", grade: 11 },
+    {name: "Jason", gender: "male", grade: 9 },
+    {name: "Joshua", gender: "male", grade: 10 },
+    {name: "Katie", gender: "female", grade: 10 },
+    {name: "Sarah", gender: "female", grade: 9 },
+    {name: "Kayla", gender: "female", grade: 10 }];
+  
+  // Creating the filters
+  function filterStudents(list, filter) {
+    return list.filter(student => {
+      if (filter.gender && student.gender !== filter.gender) {
+        return false;
+      }
+      if (filter.grade && student.grade !== filter.grade) {
+        return false;
+      }
+      return true;
+    });
+  }
+  // Pulling from the HTML
+  const genderFilter = document.getElementById("genFil");
+  const gradeFilter = document.getElementById("graFil");
+  const filterButton = document.getElementById("filBut");
+  const studentList = document.getElementById("stuList");
+  // When the button is clicked, it will filter based off what is selected in the drop downs
+  filterButton.addEventListener("click", () => {
+    const filter = {
+      gender: genderFilter.value !== "all" ? genderFilter.value : null,
+      grade: gradeFilter.value !== "all" ? parseInt(gradeFilter.value) : null,
+    };
+    const filteredStudents = filterStudents(students, filter);
+    studentList.innerHTML = "";
+    // When the button is clicked, it will create an element and append it to the HTML
+    filteredStudents.forEach(student => {
+      const listItem = document.createElement("li");
+      listItem.textContent = student.name;
+      studentList.appendChild(listItem);
+    });
+  });
+</script>
+</html>

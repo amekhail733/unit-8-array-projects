@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <title>5 Question Quiz</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+            font-family: 'Varela Round', sans-serif;
+        }
+        body{
+            background-color: skyblue;
+            display:flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+        form{
+            width:30vw;
+            height:auto;
+            padding:2px;
+            font-size:15px;
+        }
+        .quesCont{
+            background-color: white;
+            padding:20px;
+        }
+        #submit{
+            width:200px;
+            height:50px;
+            background-color: white;
+            transition:0.5s;
+        }
+        #submit:hover{
+            background-color: blue;
+            color:white;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div><h1>Quiz</h1></div>
+    <!-- Quiz -->
+    <main>
+        <form>
+            <!-- Question 1 -->
+            <div class="quesCont">
+                <h3>1. What color is the sky?</h3>
+                <p>A: <input type="radio" id="q1" name="question1" value="correct">Blue</p>
+                <p>B: <input type="radio" id="q1" name="question1" value="wrong">Yellow</p>
+                <p>C: <input type="radio" id="q1" name="question1" value="wrong">Green</p>
+                <p>D: <input type="radio" id="q1" name="question1" value="wrong">Red</p>
+            </div>
+            <!-- Question 2 -->
+            <div class="quesCont">
+                <h3>2. How often is a presidental election?</h3>
+                <p>A: <input type="radio" id="q2" name="question2" value="wrong">16 years</p>
+                <p>B: <input type="radio" id="q2" name="question2" value="wrong">90 Days</p>
+                <p>C: <input type="radio" id="q2" name="question2" value="correct">4 years</p>
+                <p>D: <input type="radio" id="q2" name="question2" value="wrong">After death of a president</p>
+            </div>
+            <!-- Question 3 -->
+            <div class="quesCont">
+                <h3>3. If you have red paint, and you accidently spill blue paint in it, what color do you have now?</h3>
+                <p>A: <input type="radio" id="q3" name="question3" value="wrong">Brown</p>
+                <p>B: <input type="radio" id="q3" name="question3" value="correct">Purple</p>
+                <p>C: <input type="radio" id="q3" name="question3" value="wrong">It will not mix</p>
+                <p>D: <input type="radio" id="q3" name="question3" value="wrong">Green</p>
+            </div>
+            <!-- Question 4 -->
+            <div class="quesCont">
+                <h3>4. What time does Coding Year 1 have their break time?</h3>
+                <p>A: <input type="radio" id="q4" name="question4" value="wrong">2:30pm</p>
+                <p>B: <input type="radio" id="q4" name="question4" value="wrong">12:00am</p>
+                <p>C: <input type="radio" id="q4" name="question4" value="correct">5:30pm</p>
+                <p>D: <input type="radio" id="q4" name="question4" value="wrong">6:30pm</p>
+            </div>
+            <!-- Question 5 -->
+            <div class="quesCont">
+                <h3>5. What are the 3 languages for web design?</h3>
+                <p>A: <input type="radio" id="q5" name="question5" value="correct">HTML, CSS, & Javascript</p>
+                <p>B: <input type="radio" id="q5" name="question5" value="wrong">HTML, Ruby, & Python</p>
+                <p>C: <input type="radio" id="q5" name="question5" value="wrong">Python, CSS & C#</p>
+                <p>D: <input type="radio" id="q5" name="question5" value="wrong">Javascript, SQL & Python</p>
+            </div>
+            <!-- Submit button -->
+            <button id="submit" onclick="getResult()">Submit Quiz</button>
+        </form>
+        <div id="results"></div>
+    </main>
+</body>
+<script>
+    var score = 0;  // Default score is 0 on start
+    // When the user clicks the submit button, this function will run
+    function getResult(){
+        // grabs the question and the question number using the name element from the form
+        for(var i = 1; i <= 5; i++) {
+            var questions = document.getElementsByName('question'+i);
+        // If the value/selected is correct, it will add on to the score variable
+        for(var x = 0; x < questions.length; x++){
+            var Val = questions[x];
+                if(Val.value == "correct" && Val.checked) {
+                    score++;
+                }
+            }
+        }
+        // Displays a pop up of the final score, and then will refresh the page to prevent answer changes
+        // However, a new attempt can still be made after the refresh
+        window.alert("Your final score was: " + score +"/5");
+    }
+</script>
+</html>
